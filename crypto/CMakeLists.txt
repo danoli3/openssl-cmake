@@ -557,7 +557,7 @@ if (WIN32)
     endif()
 endif()
 
-add_library(crypto
+set(LIBCRYPTO_SRC
     ${CMAKE_BINARY_DIR}/include/openssl/opensslv.h
     ${CMAKE_BINARY_DIR}/include/openssl/configuration.h
     ${CMAKE_BINARY_DIR}/include/openssl/asn1.h
@@ -889,6 +889,14 @@ add_library(crypto
     ${LIBCRYPTO_SOURCES}
     ${LIBCRYPTO_PROVIDER_SOURCES}
 )
+
+if (EXISTS "${CMAKE_SOURCE_DIR}/openssl/include/openssl/asn1_mac.h")
+    list(APPEND LIBCRYPTO_SRC
+         "${CMAKE_SOURCE_DIR}/openssl/include/openssl/asn1_mac.h")
+endif()
+
+add_library(crypto ${LIBCRYPTO_SRC})
+
 
 add_dependencies(crypto generate_crypto_src)
 

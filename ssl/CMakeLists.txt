@@ -32,8 +32,6 @@ set(LIBSSL_SOURCES
     ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_conf.c
     ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_mcnf.c
     ${CMAKE_SOURCE_DIR}/openssl/ssl/bio_ssl.c
-    ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_err.c
-    ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_err_legacy.c
     ${CMAKE_SOURCE_DIR}/openssl/ssl/tls_srp.c
     ${CMAKE_SOURCE_DIR}/openssl/ssl/t1_trce.c
     ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_utst.c
