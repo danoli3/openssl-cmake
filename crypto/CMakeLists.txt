@@ -962,6 +962,7 @@ set_target_properties(crypto PROPERTIES
 )
 
 target_include_directories(crypto
+    BEFORE
     PRIVATE ${CMAKE_SOURCE_DIR}/openssl/providers/implementations/include
             ${CMAKE_SOURCE_DIR}/openssl/providers/common/include
     PUBLIC  ${CMAKE_BINARY_DIR}/include
@@ -970,6 +971,8 @@ target_include_directories(crypto
             ${CMAKE_SOURCE_DIR}/openssl/include
             ${CMAKE_SOURCE_DIR}/openssl/crypto
 )
+
+
 
 get_filename_component(OPENSSL_ENGINESDIR_ABSOLUTE ${CMAKE_INSTALL_LIBDIR}/engine-3 ABSOLUTE BASE_DIR ${CMAKE_INSTALL_PREFIX})
 get_filename_component(OPENSSL_MODULESDIR_ABSOLUTE ${CMAKE_INSTALL_LIBDIR}/ossl-modules ABSOLUTE BASE_DIR ${CMAKE_INSTALL_PREFIX})
