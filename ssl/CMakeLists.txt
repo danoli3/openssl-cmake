@@ -60,8 +60,8 @@ set(LIBSSL_SOURCES
     ${CMAKE_SOURCE_DIR}/openssl/include/internal/statem.h
 )
 
-if (EXISTS "${CMAKE_SOURCE_DIR}/include/openssl/core_names.h")
-  list(APPEND LIBSSL_SOURCES "${CMAKE_SOURCE_DIR}/include/openssl/core_names.h")
+if (EXISTS "${CMAKE_BINARY_DIR}/include/openssl/core_names.h")
+  list(APPEND LIBSSL_SOURCES "${CMAKE_BINARY_DIR}/include/openssl/core_names.h")
 endif()
 
 if (EXISTS "${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_err_legacy.c")
