@@ -41,7 +41,6 @@ set(LIBSSL_SOURCES
     ${CMAKE_SOURCE_DIR}/openssl/crypto/packet.c
     ${CMAKE_SOURCE_DIR}/openssl/crypto/quic_vlint.c
     ${CMAKE_SOURCE_DIR}/openssl/crypto/time.c
-    ${CMAKE_SOURCE_DIR}/openssl/ssl/sslerr.h
     ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_cert_table.h
     ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_local.h
     ${CMAKE_SOURCE_DIR}/openssl/ssl/statem/statem_local.h
@@ -60,6 +59,13 @@ set(LIBSSL_SOURCES
     ${CMAKE_SOURCE_DIR}/openssl/include/internal/tlsgroups.h
     ${CMAKE_SOURCE_DIR}/openssl/include/internal/statem.h
 )
+
+if (OPENSSL_DEPRECATED_3_4)
+    set(LIBSSL_SOURCES
+        ${LIBSSL_SOURCES}
+        ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_err_legacy.c
+    )
+endif()
 
 if (OPENSSL_DEPRECATED_3_0)
     set(LIBSSL_SOURCES

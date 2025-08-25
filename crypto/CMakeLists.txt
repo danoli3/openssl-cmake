@@ -774,7 +774,6 @@ set(LIBCRYPTO_SRC
     ${CMAKE_SOURCE_DIR}/openssl/include/internal/uint_set.h
     ${CMAKE_SOURCE_DIR}/openssl/include/internal/unicode.h
     ${CMAKE_SOURCE_DIR}/openssl/include/openssl/aes.h
-    ${CMAKE_SOURCE_DIR}/openssl/include/openssl/asn1_mac.h
     ${CMAKE_SOURCE_DIR}/openssl/include/openssl/asn1err.h
     ${CMAKE_SOURCE_DIR}/openssl/include/openssl/async.h
     ${CMAKE_SOURCE_DIR}/openssl/include/openssl/asyncerr.h
