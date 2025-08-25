@@ -60,11 +60,12 @@ set(LIBSSL_SOURCES
     ${CMAKE_SOURCE_DIR}/openssl/include/internal/statem.h
 )
 
-if (OPENSSL_DEPRECATED_3_4)
-    set(LIBSSL_SOURCES
-        ${LIBSSL_SOURCES}
-        ${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_err_legacy.c
-    )
+if (EXISTS "${CMAKE_SOURCE_DIR}/include/openssl/core_names.h")
+  list(APPEND LIBSSL_SOURCES "${CMAKE_SOURCE_DIR}/include/openssl/core_names.h")
+endif()
+
+if (EXISTS "${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_err_legacy.c")
+    list(APPEND LIBSSL_SOURCES "${CMAKE_SOURCE_DIR}/openssl/ssl/ssl_err_legacy.c")
 endif()
 
 if (OPENSSL_DEPRECATED_3_0)
@@ -144,6 +145,7 @@ set_target_properties(ssl PROPERTIES
 )
 
 target_include_directories(ssl
+    BEFORE
     PUBLIC ${CMAKE_BINARY_DIR}/include
            ${CMAKE_CURRENT_BINARY_DIR}
            ${CMAKE_SOURCE_DIR}/openssl
