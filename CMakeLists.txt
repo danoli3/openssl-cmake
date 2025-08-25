@@ -76,7 +76,25 @@ include("./.FsEnv.cmake" OPTIONAL)
 find_package(Perl)
 
 if (Perl_FOUND)
+    message(AUTHOR_WARNING "Perl is found.")
     # include(CTest)
+    set(OSSL_SRC_DIR   "${CMAKE_SOURCE_DIR}/openssl")
+    set(OSSL_BUILD_INC "${CMAKE_BINARY_DIR}/include")
+
+    add_custom_command(
+      OUTPUT  "${OSSL_BUILD_INC}/openssl/core_names.h"
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${OSSL_BUILD_INC}/openssl"
+      COMMAND ${PERL_EXECUTABLE} -I "${CMAKE_BINARY_DIR}" -Mconfigdata
+              "${OSSL_SRC_DIR}/util/dofile.pl"
+              -o "${OSSL_BUILD_INC}/openssl/core_names.h"
+              -i "${OSSL_SRC_DIR}/include/openssl/core_names.h.in"
+      DEPENDS "${OSSL_SRC_DIR}/include/openssl/core_names.h.in"
+              "${CMAKE_BINARY_DIR}/configdata.pm"
+      VERBATIM
+    )
+
+    add_custom_target(openssl_generated_headers
+      DEPENDS "${OSSL_BUILD_INC}/openssl/core_names.h")
 else()
     message(AUTHOR_WARNING "Perl is not found. Since test cases depends on Perl testing is disabled.")
 endif()
